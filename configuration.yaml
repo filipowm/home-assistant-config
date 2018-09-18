@@ -11,19 +11,6 @@ homeassistant:
   whitelist_external_dirs:
     - /config
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
-
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-# updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
-
 python_script:
 
 zone:
@@ -51,12 +38,6 @@ panel_iframe:
     icon: 'mdi:console'
     url: 'http://192.168.33.10:8080'
 
-
-weblink:
-  entities:
-    - name: Portainerd
-      url: http://localhost:9000
-      icon: mdi:console
 
 ###  Devices  ###
 #alarm_control_panel: !include alarm_control_panel.yaml

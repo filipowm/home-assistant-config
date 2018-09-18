@@ -2,10 +2,6 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    #- group.living_room
-    #- group.mat_room
-    #- group.other_room
-    - group.people
     - group.outdoor
     - sensor.weather_temperature
 
@@ -14,43 +10,13 @@ outdoor:
   view: yes
   entities:
     - sun.sun
-    #- sensor.weather_temperature
+    - sensor.weather_temperature
     - sensor.weather_precipitation
     - sensor.weather_pressure
     - sensor.weather_wind_direction
     - sensor.weather_wind_speed
     - sensor.weather_cloudiness
     - sensor.weather_humidity
-
-living_room:
-  name: Living Room
-  view: yes
-  entities:
-
-mat_room:
-  name: Mat's Room
-  view: yes
-  entities:
-
-other_room:
-  name: Other Room
-  view: yes
-  entities:
-
-kitchen:
-  name: Kitchen
-  view: no
-  entities:
-
-bathroom:
-  name: Bathroom
-  view: no
-  entities:
-
-people:
-  name: People
-  view: yes
-  entities:
 
 HA:
   view: yes
@@ -63,16 +29,6 @@ HA:
     - group.batteries
     - group.docker_containers
 
-Home Automation Device Status:
-  control: hidden
-  entities:
-#    - binary_sensor.ikea_tradfri_gateway
-#    - binary_sensor.broadlink_rm_mini_3
-#    - binary_sensor.open_garage
-#    - binary_sensor.nest
-#    - binary_sensor.echo
-#    - binary_sensor.sonoff_basic_1
-#    - binary_sensor.sonoff_pow_1
 HA Server Monitor:
   - sensor.processor_use
   - sensor.disk_use_percent_home

@@ -49,10 +49,6 @@
 
 - platform: template
   sensors:
-
-      # approxwattage:
-      #   unit_of_measurement: 'W'
-      #   value_template: '{{ states("sensor.ups_load") | float /100*900 }}'
     since_last_boot_templated:
       value_template: >-
         {%- set slb = states.sensor.since_last_boot.state.split(' ') -%}

@@ -5,10 +5,6 @@
 #                    SENSORS                       #
 #                                                  #
 ####################################################
-sensor.approxwattage:
-  friendly_name: Approximate Watts
-  icon: mdi:gauge
-
 sensor.cpu_load_total:
   icon: mdi:chip
 
@@ -33,10 +29,6 @@ sensor.interval_adamsiphone:
 sensor.latest_version:
   friendly_name: Latest Release
   icon: mdi:github-circle
-
-sensor.lets_encrypt_expiration:
-  friendly_name: Lets Encrypt Expiration
-  icon: mdi:timelapse
 
 sensor.memory_use_percent:
   friendly_name: Memory Usage
@@ -81,10 +73,6 @@ sensor.temperature_sda:
 
 sensor.temperature_sdb:
   icon: mdi:thermometer-lines
-
-sensor.upsstate:
-  friendly_name: UPS State
-  icon: mdi:flash-circle
 
 sensor.volume_used_volume_1:
   icon: mdi:harddisk
