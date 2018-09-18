@@ -19,9 +19,13 @@
     - /config/home-assistant.log
 
 - platform: speedtest
-  monitored_conditions:
-    - download
-    - upload
+  minute:
+      - 0
+      - 30
+    monitored_conditions:
+      - ping
+      - download
+      - upload
 
 - platform: systemmonitor
   resources:
