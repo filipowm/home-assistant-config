@@ -1,0 +1,25 @@
+# Location name where Home Assistant is running
+name: Home
+
+# Location required to calculate the time the sun rises and sets
+latitude: !secret latitude
+longitude: !secret longitude
+
+# Altitude above sea level in meters. Impacts weather/sunrise data
+elevation: !secret elevation
+
+# metric for Metric, imperial for Imperial
+unit_system: metric
+
+# use: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+time_zone: !secret timezone
+
+# Customize entities
+customize: !include_dir_merge_named ../customize/
+
+# Components configuration bundles
+packages: !include_dir_named ../packages/
+
+# List of folders that can be used as sources for sending files
+whitelist_external_dirs:
+  - /config

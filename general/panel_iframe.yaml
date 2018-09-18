@@ -1,0 +1,5 @@
+# Add home router access from iframe
+router:
+  title: Router
+  url: !secret router_http
+  icon: mdi:access-point

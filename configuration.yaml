@@ -1,35 +1,14 @@
-homeassistant:
-  name: Home # location name where HASS is running
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
-  # elevation: 1 (altitude above sea level in meters)
-  unit_system: metric # metric for Metric, imperial for Imperial
-  time_zone: !secret timezone # use: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  customize: !include_dir_merge_named customize/
-  packages: !include_dir_named packages
-  whitelist_external_dirs:
-    - /config
+# Basic information setup
+homeassistant: !include general/homeassistant.yaml
 
-python_script:
+# Zones allow you to specify certain regions on earth (for now)
+zone: !include general/zones.yaml
 
-zone:
-  name: Home
-  latitude: !secret latitude
-  longitude: !secret longitude
-  radius: 200
-  icon: mdi:home
+# Text-to-Speech (TTS) enables Home Assistant to speak to you
+tts: !include general/text2speech.yaml
 
-# Text to speech
-tts:
-  - platform: google
-
-panel_iframe:
-  router:
-    title: Router
-    url: !secret router_http
-    icon: mdi:access-point
-
+# The panel_iframe support allows you to add additional panels to your Home Assistant frontend
+panel_iframe: !include general/panel_iframe.yaml
 
 ###  Devices  ###
 #alarm_control_panel: !include alarm_control_panel.yaml
@@ -64,7 +43,7 @@ config: # Enables configuration UI
 conversation: # Allows you to issue voice commands from the frontend in enabled browsers
 device_tracker: !include_dir_merge_list trackers/
 discovery: # Discover some devices automatically
-frontend: !include frontend.yaml
+frontend: !include general/frontend.yaml
 history: # Enables support for tracking state changes over time
 logbook: # View all events in a logbook
 logger:
