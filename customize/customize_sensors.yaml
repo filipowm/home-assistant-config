@@ -1,0 +1,102 @@
+#https://home-assistant.io/docs/configuration/customizing-devices/
+
+####################################################
+#                                                  #
+#                    SENSORS                       #
+#                                                  #
+####################################################
+sensor.approxwattage:
+  friendly_name: Approximate Watts
+  icon: mdi:gauge
+
+sensor.cpu_load_total:
+  icon: mdi:chip
+
+sensor.disk_use_percent_home:
+  friendly_name: Disk Use
+  icon: mdi:harddisk
+
+sensor.homeassistantlog:
+  friendly_name: Log File
+
+sensor.homeassistant_v2db:
+  friendly_name: Database
+
+sensor.installed_version:
+  friendly_name: Installed
+  icon: mdi:folder-download
+
+sensor.interval_adamsiphone:
+  friendly_name: Update Interval
+  icon: mdi:av-timer
+
+sensor.latest_version:
+  friendly_name: Latest Release
+  icon: mdi:github-circle
+
+sensor.lets_encrypt_expiration:
+  friendly_name: Lets Encrypt Expiration
+  icon: mdi:timelapse
+
+sensor.memory_use_percent:
+  friendly_name: Memory Usage
+  icon: mdi:chip
+
+sensor.memory_usage_real:
+  friendly_name: Memory Usage
+  icon: mdi:chip
+
+sensor.pow1_energy:
+  friendly_name: kWh
+  icon: mdi:chart-line
+
+sensor.pow1_power:
+  friendly_name: Watts
+  icon: mdi:power-plug
+
+sensor.pow1_voltage:
+  friendly_name: Volts
+  icon: mdi:power-socket-us
+
+sensor.pow1_current:
+  friendly_name: Amps
+  icon: mdi:flash-circle
+
+sensor.ram_use:
+  friendly_name: Ram Use
+  icon: mdi:chip
+
+sensor.since_last_boot_templated:
+  friendly_name: Last Boot
+  icon: mdi:clock
+
+sensor.status_smart_sda:
+  icon: mdi:medical-bag
+
+sensor.status_smart_sdb:
+  icon: mdi:medical-bag
+
+sensor.temperature_sda:
+  icon: mdi:thermometer-lines
+
+sensor.temperature_sdb:
+  icon: mdi:thermometer-lines
+
+sensor.upsstate:
+  friendly_name: UPS State
+  icon: mdi:flash-circle
+
+sensor.volume_used_volume_1:
+  icon: mdi:harddisk
+
+sensor.volume_used_volume_2:
+  icon: mdi:harddisk
+
+sensor.wifisignal:
+  icon: mdi:wifi
+  friendly_name: WiFi Signal
+
+####################################################
+#                                                  #
+#          END OF CONFIGURATION FILE               #
+#                                                  #

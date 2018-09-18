@@ -1,0 +1,73 @@
+- platform: yr
+  name: Weather
+  monitored_conditions:
+    - temperature
+    - symbol
+    - precipitation
+    - windSpeed
+    - pressure
+    - windDirection
+    - humidity
+    - cloudiness
+
+- platform: cpuspeed
+  name: CPU
+
+- platform: filesize
+  file_paths:
+    - /config/home-assistant_v2.db
+    - /config/home-assistant.log
+
+- platform: speedtest
+  monitored_conditions:
+    - download
+    - upload
+
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_use_percent
+    - type: processor_use
+    - type: since_last_boot
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+
+- platform: version
+  name: Installed Version
+
+- platform: rest
+  resource: https://pypi.python.org/pypi/homeassistant/json
+  name: Latest Version
+  value_template: "{{ value_json.info.version }}"
+  scan_interval: 1800
+
+- platform: template
+  sensors:
+
+      # approxwattage:
+      #   unit_of_measurement: 'W'
+      #   value_template: '{{ states("sensor.ups_load") | float /100*900 }}'
+    since_last_boot_templated:
+      value_template: >-
+        {%- set slb = states.sensor.since_last_boot.state.split(' ') -%}
+        {%- set count = slb | length -%}
+        {%- set hms = slb[count - 1] -%}
+        {%- set hms_trimmed = hms.split('.')[0] -%}
+        {%- set hms_split = hms_trimmed.split(':') -%}
+        {%- set hours = hms_split[0] | int -%}
+        {%- if count == 3 -%}
+          {{ slb[0] ~ ' ' ~ slb[1] ~ ' ' }}
+        {%- endif -%}
+        {%- if hours > 0 -%}
+          {%- if hours == 1 -%}
+            1 hour
+          {%- else -%}
+            {{ hours }} hours
+          {%- endif -%}
+        {%- endif -%}

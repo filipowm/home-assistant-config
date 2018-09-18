@@ -1,0 +1,9 @@
+.cloud
+.uuid
+.HA_VERSION
+*.db
+home-assistant.log
+secrets.yaml
+
+.cloud/
+.storage/

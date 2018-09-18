@@ -1,0 +1,98 @@
+homeassistant:
+  name: Home # location name where HASS is running
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # elevation: 1 (altitude above sea level in meters)
+  unit_system: metric # metric for Metric, imperial for Imperial
+  time_zone: !secret timezone # use: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  customize: !include_dir_merge_named customize/
+  packages: !include_dir_named packages
+  whitelist_external_dirs:
+    - /config
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+# updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+python_script:
+
+zone:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  radius: 200
+  icon: mdi:home
+
+# Text to speech
+tts:
+  - platform: google
+
+panel_iframe:
+  router:
+    title: 'Router'
+    url: 'http://192.168.1.1'
+    icon: 'mdi:access-point'
+  grafana:
+    title: 'Grafana'
+    url: 'http://localhost:3000'
+    icon: 'mdi:chart-line'
+  cadvisor:
+    title: 'cAdvisor'
+    icon: 'mdi:console'
+    url: 'http://192.168.33.10:8080'
+
+
+weblink:
+  entities:
+    - name: Portainerd
+      url: http://localhost:9000
+      icon: mdi:console
+
+###  Devices  ###
+#alarm_control_panel: !include alarm_control_panel.yaml
+#alexa: !include alexa.yaml
+automation:  !include_dir_merge_list automations/
+#binary_sensor: !include binary_sensors.yaml
+#camera: !include cameras.yaml
+#device_tracker: !include device_trackers.yaml
+group: !include_dir_merge_named groups/
+#input_boolean: !include input_boolean.yaml
+#input_select: !include input_select.yaml
+#light: !include lights.yaml
+#media_player: !include media_players.yaml
+#notify: !include notify.yaml
+#scene: !include scenes.yaml
+script: !include_dir_merge_named scripts/
+sensor:  !include_dir_merge_list sensors/
+#shell_command: !include shell_commands.yaml
+#switch: !include switches.yaml
+
+xiaomi_aqara:
+  gateways:
+    - key: !secret aquara_gateway_key
+
+####################################################
+#                                                  #
+#                     Enables                      #
+#                                                  #
+####################################################
+cloud:
+config: # Enables configuration UI
+conversation: # Allows you to issue voice commands from the frontend in enabled browsers
+discovery: # Discover some devices automatically
+frontend: !include frontend.yaml
+history: # Enables support for tracking state changes over time
+logbook: # View all events in a logbook
+logger:
+map: # Enables a map showing the location of tracked devices
+sun: # Track the sun
