@@ -28,6 +28,7 @@ HA:
     - group.ha_file_size
     - group.batteries
     - group.docker_containers
+    - group.wifi
 
 HA Server Monitor:
   - sensor.processor_use
@@ -51,8 +52,9 @@ HA File Size:
   - sensor.homeassistantlog
   - sensor.homeassistant_v2db
 
-Wifi:
+wifi:
   entities:
     - sensor.speedtest_download
     - sensor.speedtest_upload
+    - sensor.speedtest_ping
     - sensor.wifisignal
