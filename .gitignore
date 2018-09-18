@@ -1,7 +1,7 @@
 .cloud
 .uuid
 .HA_VERSION
-*.db
+*.db*
 home-assistant.log
 secrets.yaml
 
