@@ -1,0 +1,15 @@
+xiaomi_aqara:
+  gateways:
+    - key: !secret aquara_gateway_key
+
+binary_sensor:
+  - platform: ping
+    name: Xiaomi Gateway Status
+    host: !secret xiaomi_gateway_host
+    scan_interval: 30
+    count: 4
+
+history:
+  include:
+    entities:
+      - binary_sensor.xiaomi_gateway_status
