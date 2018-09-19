@@ -24,3 +24,4 @@ include:
     - sensor.load_15m
     - sensor.homeassistant_v2db
     - sensor.disk_use_percent_home
+    - binary_sensor.router_status
