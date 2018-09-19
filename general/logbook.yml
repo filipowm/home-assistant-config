@@ -1,0 +1,8 @@
+include:
+  domains:
+    - device_tracker
+    - sun
+    - input_boolean
+    - binary_sensor
+    - light
+    - media_player

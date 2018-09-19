@@ -1,51 +1,62 @@
+####   General configuration   ####
+###################################
 # Basic information setup
 homeassistant: !include general/homeassistant.yaml
 
 # Zones allow you to specify certain regions on earth (for now)
 zone: !include general/zones.yaml
 
-# Text-to-Speech (TTS) enables Home Assistant to speak to you
-tts: !include general/text2speech.yaml
-
-# The panel_iframe support allows you to add additional panels to your Home Assistant frontend
-panel_iframe: !include general/panel_iframe.yaml
-
-###  Devices  ###
-#alarm_control_panel: !include alarm_control_panel.yaml
-#alexa: !include alexa.yaml
-automation:  !include_dir_merge_list automations/
-#binary_sensor: !include binary_sensors.yaml
-#camera: !include cameras.yaml
-#device_tracker: !include device_trackers.yaml
+####   Devices   ####
+#####################
 group: !include_dir_merge_named groups/
-#input_boolean: !include input_boolean.yaml
-#input_select: !include input_select.yaml
-#light: !include lights.yaml
-#media_player: !include media_players.yaml
-#notify: !include notify.yaml
-#scene: !include scenes.yaml
-script: !include_dir_merge_named scripts/
 sensor:  !include_dir_merge_list sensors/
-#shell_command: !include shell_commands.yaml
-#switch: !include switches.yaml
+device_tracker: !include_dir_merge_list trackers/
 
 xiaomi_aqara:
   gateways:
     - key: !secret aquara_gateway_key
 
-####################################################
-#                                                  #
-#                     Enables                      #
-#                                                  #
-####################################################
-cloud:
-config: # Enables configuration UI
-conversation: # Allows you to issue voice commands from the frontend in enabled browsers
-device_tracker: !include_dir_merge_list trackers/
-discovery: # Discover some devices automatically
+####   UI   ####
+################
+# The panel_iframe support allows you to add additional panels to your Home Assistant frontend
+panel_iframe: !include general/panel_iframe.yaml
 frontend: !include general/frontend.yaml
-history: # Enables support for tracking state changes over time
-logbook: # View all events in a logbook
-logger:
-map: # Enables a map showing the location of tracked devices
-sun: # Track the sun
+
+
+####   Automations   ####
+#########################
+automation:  !include_dir_merge_list automations/
+script: !include_dir_merge_named scripts/
+
+
+####   Enables   ####
+#####################
+# Text-to-Speech (TTS) enables Home Assistant to speak to you
+tts: !include general/text2speech.yaml
+
+# Enable integration with various cloud services like Amazon Alexa and Google Assistant
+cloud:
+
+# Enable panels configure and manage parts of Home Assistant
+config:
+
+# Enable conversations with Home Assistant (https://home-assistant.io/components/conversation/)
+conversation: # Allows you to issue voice commands from the frontend in enabled browsers
+
+# Home Assistant can discover and automatically configure zeroconf/mDNS and uPnP devices on your network (https://home-assistant.io/components/discovery/)
+discovery:
+
+# Enable a map showing the location of tracked devices (https://home-assistant.io/components/map/)
+map:
+
+# Track if sun is below or above the horizon (https://home-assistant.io/components/sun/)
+sun:
+
+# Track everything that is going on within Home Assistant and allow the user to browse through it (https://home-assistant.io/components/history)
+history: !include general/history.yml
+
+# Show all the changes that happened to your house in reverse chronological order. (https://home-assistant.io/components/logbook)
+logbook: !include general/logbook.yml
+
+# Level of logging activities (https://home-assistant.io/components/logger)
+logger: !include general/logger.yml
