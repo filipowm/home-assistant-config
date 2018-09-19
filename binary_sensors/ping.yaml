@@ -1,0 +1,5 @@
+- platform: ping
+  name: Router Status
+  host: !secret router_host
+  scan_interval: 30
+  count: 4
