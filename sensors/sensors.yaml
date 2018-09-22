@@ -1,11 +1,1 @@
-- platform: yr
-  name: Weather
-  monitored_conditions:
-    - temperature
-    - symbol
-    - precipitation
-    - windSpeed
-    - pressure
-    - windDirection
-    - humidity
-    - cloudiness
+- platform: dummy # need to have it to not get any error about invalid sensor configuration
