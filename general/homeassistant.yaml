@@ -23,3 +23,7 @@ packages: !include_dir_named ../packages/
 # List of folders that can be used as sources for sending files
 whitelist_external_dirs:
   - /config
+
+auth_providers:
+  - type: homeassistant
+  - type: trusted_networks

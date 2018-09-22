@@ -1,0 +1,4 @@
+trusted_networks:
+  - 127.0.0.1
+  - ::1
+  - 172.17.0.0/24 # my workstation VM subnet

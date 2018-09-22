@@ -3,6 +3,8 @@
 # Basic information setup
 homeassistant: !include general/homeassistant.yaml
 
+http: !include general/http.yaml
+
 # Zones allow you to specify certain regions on earth (for now)
 zone: !include general/zones.yaml
 
