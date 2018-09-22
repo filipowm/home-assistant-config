@@ -28,7 +28,7 @@ sensor:
       - wind_bearing
       - pressure
       - visibility
-#      - moon_phase
+      - moon_phase
       - uv_index
     update_interval:
       minutes: 5
