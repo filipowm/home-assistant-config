@@ -1,0 +1,21 @@
+sensor:
+  - platform: yr
+    name: Weather
+    monitored_conditions:
+      - temperature
+      - precipitation
+      - windSpeed
+      - windDirection
+      - pressure
+      - humidity
+      - cloudiness
+
+history:
+  include:
+    entities:
+      - sensor.weather_wind_speed
+      - sensor.weather_temperature
+      - sensor.weather_pressure
+      - sensor.weather_precipitation
+      - sensor.weather_humidity
+      - sensor.weather_cloudiness
