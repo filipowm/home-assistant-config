@@ -1,0 +1,127 @@
+# Configuration bundle for device and system where your Home Assistant is running
+
+sensor:
+  # Check device metrics
+  - platform: cpuspeed
+    name: CPU
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_use_percent
+      - type: processor_use
+      - type: since_last_boot
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+
+  # Check installed Home Assistant version
+  - platform: version
+    name: Installed Version
+
+  # Check latest Home Assistant version
+  - platform: rest
+    resource: https://pypi.python.org/pypi/homeassistant/json
+    name: Latest Version
+    value_template: "{{ value_json.info.version }}"
+    scan_interval: 1800
+
+  # Check log and database files sizes
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
+
+  # Check Internet connection metrics
+  - platform: speedtest
+    minute:
+      - 0
+      - 30
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+  - platform: template
+    sensors:
+      # Time since device was last booted
+      since_last_boot_templated:
+        value_template: >-
+          {%- set slb = states.sensor.since_last_boot.state.split(' ') -%}
+          {%- set count = slb | length -%}
+          {%- set hms = slb[count - 1] -%}
+          {%- set hms_trimmed = hms.split('.')[0] -%}
+          {%- set hms_split = hms_trimmed.split(':') -%}
+          {%- set hours = hms_split[0] | int -%}
+          {%- if count == 3 -%}
+            {{ slb[0] ~ ' ' ~ slb[1] ~ ' ' }}
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if hours == 1 -%}
+              1 hour
+            {%- else -%}
+              {{ hours }} hours
+            {%- endif -%}
+          {%- endif -%}
+
+
+group:
+  HA:
+    view: yes
+    icon: mdi:home-assistant
+    entities:
+      - group.Home_Automation_Device_Status
+      - group.server_monitor
+      - group.version_info
+      - group.core_files_size
+#      - group.docker_containers
+      - group.wifi
+
+  Server Monitor:
+    - sensor.processor_use
+    - sensor.disk_use_percent_home
+    - sensor.memory_use_percent
+    - sensor.since_last_boot_templated
+    - sensor.network_in_eno1
+    - sensor.network_out_eno1
+    - sensor.cpu
+    - sensor.cpu_temperature
+    - sensor.lets_encrypt_expiration
+    - sensor.load_1m
+    - sensor.load_5m
+    - sensor.load_15m
+
+  Version Info:
+    - sensor.installed_version
+    - sensor.latest_version
+
+  Core Files Size:
+    - sensor.homeassistantlog
+    - sensor.homeassistant_v2db
+
+  WiFi:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+    - sensor.wifisignal
+# Add device and system metrics to History component
+history:
+  include:
+    entities:
+      - sensor.speedtest_upload
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.network_out_eth0
+      - sensor.network_in_eth0
+      - sensor.memory_use_percent
+      - sensor.load_1m
+      - sensor.load_5m
+      - sensor.load_15m
+      - sensor.homeassistant_v2db
+      - sensor.homeassistantlog
+      - sensor.disk_use_percent_home
