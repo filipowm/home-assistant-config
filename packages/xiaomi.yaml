@@ -1,8 +1,8 @@
 # Configuration bundle for Xiaomi devices
 
-xiaomi_aqara:
-  gateways:
-    - key: !secret aquara_gateway_key
+#xiaomi_aqara:
+#  gateways:
+#    - key: !secret aquara_gateway_key
 
 # Gateway availability check
 binary_sensor:
